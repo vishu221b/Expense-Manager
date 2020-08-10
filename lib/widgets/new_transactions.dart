@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 
-class NewTransactions extends StatelessWidget {
+class NewTransactions extends StatefulWidget {
+  final Function onPressedCallback;
+
+  NewTransactions(this.onPressedCallback);
+
+  @override
+  _NewTransactionsState createState() => _NewTransactionsState();
+}
+
+class _NewTransactionsState extends State<NewTransactions> {
   final titleText = TextEditingController();
+
   final amountText = TextEditingController();
 
   void _submitTransactionData(){
@@ -12,21 +22,19 @@ class NewTransactions extends StatelessWidget {
       return;
     }
     final double sanitisedAmount = double.parse(initialAmount);
-    onPressedCallback(sanitisedTitle, sanitisedAmount, false);
+    widget.onPressedCallback(sanitisedTitle, sanitisedAmount, false);
+    Navigator.of(context).pop();// closes the modal once values are submitted inside the Expense Modal
   }
-
-  final Function onPressedCallback;
-
-  NewTransactions(this.onPressedCallback);
-
+// widget and context are built in keywords available inside State class to refer to the parameters/methods in it's parent stateful widget or the context from it
   @override
   Widget build(BuildContext buildContext) {
     return Card(
       // elevation: 5,
       child: Container(
+        height: 100,
         padding: EdgeInsets.all(10),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             TextField(
