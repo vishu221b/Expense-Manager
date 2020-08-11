@@ -12,6 +12,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Expense Management Tool',
       home: HomePage(),
+      theme: ThemeData(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                title: TextStyle(
+                  fontFamily: 'Quicksand',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                  title: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+          ),
+          primarySwatch: Colors.teal,
+          accentColor: Colors.teal,
+          fontFamily: 'Quicksand'),
     );
   }
 }
@@ -22,26 +42,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transaction> transactionsList = [
-    Transaction(
-      id: "1",
-      title: "Title",
-      amount: 1231123.312,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "2",
-      title: "Title",
-      amount: 13.312,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "3",
-      title: "Title",
-      amount: 123.312,
-      date: DateTime.now(),
-    ),
-  ];
+  final List<Transaction> transactionsList = [];
+    // Transaction(
+    //   id: "1",
+    //   title: "Title",
+    //   amount: 1231123.312,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: "2",
+    //   title: "Title",
+    //   amount: 13.312,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: "3",
+    //   title: "Title",
+    //   amount: 123.312,
+    //   date: DateTime.now(),
+    // ),
+  // ];/
 
   void _addNewTransaction(String title, double amount, bool error) {
     if (error) {
@@ -91,7 +111,7 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               color: Colors.deepOrangeAccent,
               child: Card(
-                color: Colors.lightBlueAccent,
+                color: Theme.of(context).primaryColorLight,
                 child: Text('Chart Card'),
               ),
             ),
